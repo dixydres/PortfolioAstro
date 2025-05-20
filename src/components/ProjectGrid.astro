@@ -158,20 +158,22 @@ const sortedPosts = count ? filteredPosts.slice(0, count) : filteredPosts;
     });
 
     function openOverlay(imageSrc: string) {
-        const overlay = document.getElementById('overlay');
-        const overlayImage = document.getElementById('overlayImage') as HTMLImageElement | null;
+        const overlay = document.getElementById("overlay");
+        const overlayImage = document.getElementById(
+            "overlayImage",
+        ) as HTMLImageElement | null;
         if (overlay && overlayImage) {
             overlayImage.src = imageSrc;
-            overlay.style.display = 'flex';
+            overlay.style.display = "flex";
         }
     }
 
     function closeOverlay(event: MouseEvent) {
-        const overlay = document.getElementById('overlay');
+        const overlay = document.getElementById("overlay");
         if (overlay) {
             const target = event.target as HTMLElement;
-            if (target.id === 'overlay' || target.classList.contains('close')) {
-                overlay.style.display = 'none';
+            if (target.id === "overlay" || target.classList.contains("close")) {
+                overlay.style.display = "none";
             }
         }
     }
