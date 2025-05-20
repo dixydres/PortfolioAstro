@@ -29,7 +29,7 @@ type Props = {
 const { post, type } = Astro.props;
 const { Content } = await post.render();
 
-const returnPath = type === "work" ? "/works" : "/blog";
+const returnPath = type === "work" ? "/Portfolio/works" : "/Portfolio/blog";
 const returnText = type === "work" ? "Retour aux projets" : "Retour au blog";
 ---
 
