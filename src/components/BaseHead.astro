@@ -10,7 +10,7 @@ export interface Props {
 const {
     title,
     description = siteConfig.description,
-    image = "/Muller_Photo.jpeg",
+    image = "/Portfolio/Muller_Photo.jpeg",
 } = Astro.props;
 ---
 
@@ -19,6 +19,18 @@ const {
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/jpeg" href="/Portfolio/Muller_Photo.jpeg" />
 <link rel="apple-touch-icon" href="/Portfolio/Muller_Photo.jpeg" />
+
+<!-- Ensure CSS is loaded with correct base path -->
+<script>
+    // Add base path to any dynamically loaded assets
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
+            if (!link.href.startsWith('http') && !link.href.startsWith('/Portfolio/')) {
+                link.href = '/Portfolio' + link.href;
+            }
+        });
+    });
+</script>
 <meta name="generator" content={Astro.generator} />
 
 <!-- Primary Meta Tags -->

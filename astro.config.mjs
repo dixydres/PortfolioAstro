@@ -5,6 +5,10 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://dixydres.github.io',
   base: '/Portfolio',
+  build: {
+    assets: 'assets',
+    assetsPrefix: '/Portfolio'
+  },
   integrations: [],
   markdown: {
     shikiConfig: {
