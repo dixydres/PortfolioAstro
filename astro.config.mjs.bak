@@ -12,30 +12,39 @@ export default defineConfig({
   vite: {
     base: '/Portfolio/',
     build: {
+      assetsInlineLimit: 0,
       cssCodeSplit: false,
       rollupOptions: {
         output: {
-          assetFileNames: (assetInfo) => {
-            const info = assetInfo?.name ?? '';
-            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
-              extType = 'img';
+          assetFileNames: ({ name }) => {
+            if (!name) return '_assets/[name][extname]';
+            
+            if (name.endsWith('.css')) return '_assets/css/[name][extname]';
+            if (name.endsWith('.js')) return '_assets/js/[name][extname]';
+            if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(name)) return '_assets/img/[name][extname]';
+            if (/\.(mp4|webm|ogg)$/.test(name)) return '_assets/media/[name][extname]';
+            
+            return '_assets/[name][extname]';
+          },          chunkFileNames: '_assets/js/[name][extname]',
+          entryFileNames: '_assets/js/[name][extname]',
+          manualChunks(id) {
+            if (id.includes('/node_modules/')) {
+              if (id.includes('/astro/')) return 'vendor/astro';
+              if (id.includes('/react/') || id.includes('/react-dom/')) return 'vendor/react';
+              if (id.includes('/@astrojs/')) return 'vendor/astro-integration';
+              return 'vendor/common';
             }
-            return `assets/${extType}/[name][extname]`;
-          },
-          chunkFileNames: 'assets/js/[name].js',
-          entryFileNames: 'assets/js/[name].js',
-        },
-      },
+          }
+        }
+      }
     },
-  },
-  integrations: [portfolioAssetPaths()],
-  markdown: {
-    shikiConfig: {
-      theme: 'dracula',
-      wrap: true
+    css: {
+      modules: {
+        generateScopedName: '[name]__[local]__[hash:base64:5]'
+      }
     }
   },
-  devToolbar: {
-    enabled: false
+  server: {
+    host: true
   }
 });

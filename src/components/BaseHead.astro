@@ -22,67 +22,45 @@ const {
 
 <!-- Asset path handling -->
 <script is:inline>
-  window.portfolioBase = '/Portfolio';
-  
-  function fixAssetPath(url) {
-    if (!url || url.startsWith('http') || url.startsWith('data:') || url.startsWith('blob:')) return url;
-    
-    // Remove any duplicate /Portfolio prefixes
-    while (url.includes('/Portfolio/Portfolio/')) {
-      url = url.replace('/Portfolio/Portfolio/', '/Portfolio/');
-    }
-    
-    // Ensure single /Portfolio prefix
-    if (!url.startsWith('/Portfolio')) {
-      url = url.startsWith('/') ? `/Portfolio${url}` : `/Portfolio/${url}`;
-    }
-    
-    return url;
-  }
+    window.portfolioBase = "/Portfolio";
 
-  // Fix all asset paths after DOM loads
-  document.addEventListener('DOMContentLoaded', function() {
-    // Fix stylesheet paths
-    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href) link.setAttribute('href', fixAssetPath(href));
-    });
-
-    // Fix image paths
-    document.querySelectorAll('img[src]').forEach(img => {
-      const src = img.getAttribute('src');
-      if (src) img.setAttribute('src', fixAssetPath(src));
-    });
-
-    // Fix video sources
-    document.querySelectorAll('source[src]').forEach(source => {
-      const src = source.getAttribute('src');
-      if (src) source.setAttribute('src', fixAssetPath(src));
-    });
-
-    // Fix background images
-    document.querySelectorAll('*[style*="url("]').forEach(el => {
-      const style = el.getAttribute('style');
-      if (style) {
-        el.setAttribute('style', style.replace(
-          /url\(['"]?([^'")\s]+)['"]?\)/g,
-          (match, url) => `url('${fixAssetPath(url)}')`
-        ));
-      }
-    });
-  });
-
-<!-- Ensure assets are loaded with correct base path -->
-<script>
     function fixAssetPath(url) {
-        if (url.startsWith("http://") || url.startsWith("https://")) return url;
-        if (url.startsWith("/Portfolio/")) return url;
-        return url.startsWith("/") ? `/Portfolio${url}` : `/Portfolio/${url}`;
+        if (
+            !url ||
+            url.startsWith("http") ||
+            url.startsWith("data:") ||
+            url.startsWith("blob:") ||
+            url.startsWith("mailto:") ||
+            url.startsWith("#")
+        ) {
+            return url;
+        }
+
+        // Clean up the URL and normalize slashes
+        url = url.replace(/\/+/g, "/");
+
+        // Remove duplicate Portfolio prefixes
+        while (url.includes("/Portfolio/Portfolio/")) {
+            url = url.replace("/Portfolio/Portfolio/", "/Portfolio/");
+        }
+
+        // Remove trailing slashes
+        url = url.replace(/\/+$/, "");
+
+        // Ensure Portfolio prefix
+        if (!url.startsWith("/Portfolio/")) {
+            url = url.startsWith("/")
+                ? `/Portfolio${url}`
+                : `/Portfolio/${url}`;
+        }
+
+        // Final cleanup of any double slashes
+        return url.replace(/\/+/g, "/");
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
+    function fixAllAssetPaths() {
         // Fix stylesheet paths
-        document.querySelectorAll("link[rel='stylesheet']").forEach((link) => {
+        document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
             const href = link.getAttribute("href");
             if (href) link.setAttribute("href", fixAssetPath(href));
         });
@@ -99,23 +77,45 @@ const {
             if (src) source.setAttribute("src", fixAssetPath(src));
         });
 
+        // Fix anchor hrefs
+        document.querySelectorAll("a[href]").forEach((a) => {
+            const href = a.getAttribute("href");
+            if (
+                href &&
+                !href.startsWith("http") &&
+                !href.startsWith("mailto:") &&
+                !href.startsWith("#")
+            ) {
+                a.setAttribute("href", fixAssetPath(href));
+            }
+        });
+
         // Fix background images in CSS
-        document
-            .querySelectorAll("[style*='background-image']")
-            .forEach((el) => {
-                const style = el.getAttribute("style");
-                if (style) {
-                    el.setAttribute(
-                        "style",
-                        style.replace(
-                            /url\(['"]?([^'"]*?)['"]?\)/g,
-                            (match, url) => `url('${fixAssetPath(url)}')`,
-                        ),
-                    );
-                }
-            });
+        document.querySelectorAll('[style*="url("]').forEach((el) => {
+            const style = el.getAttribute("style");
+            if (style) {
+                el.setAttribute(
+                    "style",
+                    style.replace(
+                        /url\(['"]?([^'")\s]+)['"]?\)/g,
+                        (match, url) => `url('${fixAssetPath(url)}')`,
+                    ),
+                );
+            }
+        });
+    }
+
+    // Fix paths on initial load
+    document.addEventListener("DOMContentLoaded", fixAllAssetPaths);
+
+    // Fix paths after any dynamic content updates
+    const observer = new MutationObserver(fixAllAssetPaths);
+    observer.observe(document.documentElement, {
+        childList: true,
+        subtree: true,
     });
 </script>
+
 <meta name="generator" content={Astro.generator} />
 
 <!-- Primary Meta Tags -->

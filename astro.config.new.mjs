@@ -12,27 +12,30 @@ export default defineConfig({
   vite: {
     base: '/Portfolio/',
     build: {
+      assetsInlineLimit: 0,
       cssCodeSplit: false,
       rollupOptions: {
         output: {
-          assetFileNames: (assetInfo) => {
-            if (!assetInfo.name) return 'assets/[name][extname]';
-            const ext = assetInfo.name.split('.').pop();
-            if (!ext) return 'assets/[name][extname]';
+          assetFileNames: ({ name }) => {
+            if (!name) return '_assets/[name].[ext]';
             
-            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
-              return 'assets/img/[name][extname]';
-            }
-            if (ext === 'css') {
-              return 'assets/styles/[name][extname]';
-            }
-            if (ext === 'js') {
-              return 'assets/scripts/[name][extname]';
-            }
-            return 'assets/[name][extname]';
+            if (name.endsWith('.css')) return '_assets/css/[name].[ext]';
+            if (name.endsWith('.js')) return '_assets/js/[name].[ext]';
+            if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(name)) return '_assets/img/[name].[ext]';
+            if (/\.(mp4|webm|ogg)$/.test(name)) return '_assets/media/[name].[ext]';
+            
+            return '_assets/[name].[ext]';
           },
-          chunkFileNames: 'assets/js/[name].js',
-          entryFileNames: 'assets/js/[name].js',
+          chunkFileNames: '_assets/js/[name].[hash].js',
+          entryFileNames: '_assets/js/[name].[hash].js',
+          manualChunks(id) {
+            if (id.includes('/node_modules/')) {
+              if (id.includes('/astro/')) return 'vendor/astro';
+              if (id.includes('/react/') || id.includes('/react-dom/')) return 'vendor/react';
+              if (id.includes('/@astrojs/')) return 'vendor/astro-integration';
+              return 'vendor/common';
+            }
+          }
         }
       }
     },
