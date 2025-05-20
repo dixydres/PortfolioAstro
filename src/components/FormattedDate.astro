@@ -1,0 +1,16 @@
+---
+const { date } = Astro.props;
+
+// Format the date to a readable format
+function formatDate(date) {
+    return new Date(date).toLocaleDateString("fr-FR", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+    });
+}
+---
+
+<time datetime={date.toISOString()}>
+    {formatDate(date)}
+</time>

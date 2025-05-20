@@ -1,0 +1,616 @@
+---
+// @ts-nocheck
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+
+export interface Props {
+    count?: number;
+    category?: string;
+}
+
+const { count, category } = Astro.props;
+
+const posts = await getCollection("works");
+
+// Filtrer les posts par catégorie si une catégorie est spécifiée
+let filteredPosts = posts;
+if (category) {
+    filteredPosts = posts.filter(
+        (post) => post.data.tags && post.data.tags.includes(category),
+    );
+}
+
+// Trier les projets par date
+filteredPosts = filteredPosts.sort((a, b) => {
+    return b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+});
+
+// Limiter le nombre de posts si count est spécifié
+const sortedPosts = count ? filteredPosts.slice(0, count) : filteredPosts;
+---
+
+<div class="project-grid">
+    {
+        sortedPosts.map((post, index) => (
+            <article
+                class={`project-card ${index % 2 === 0 ? "card1" : "card2"}`}
+                data-aos="fade-up"
+                data-categories={post.data.tags?.join(" ")}
+            >
+                <div class="project-content">
+                    <h3 class="project-title">{post.data.title}</h3>
+                    <p class="project-description">{post.data.description}</p>
+                    <div class="project-meta">
+                        <span class="project-date">
+                            <FormattedDate date={post.data.pubDate} />
+                        </span>
+                        {post.data.tags && (
+                            <div class="project-tags">
+                                {post.data.tags.map((tag) => (
+                                    <span class="project-tag">{tag}</span>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                    <a
+                        href={`/${post.collection}/${post.slug}/`}
+                        class="project-link"
+                    >
+                        Voir le projet
+                    </a>{" "}
+                </div>
+                {post.data.heroImage && (
+                    <div class="project-image">
+                        <img
+                            src={post.data.heroImage}
+                            alt={post.data.title}
+                            class="project-img"
+                            loading="lazy"
+                            width="800"
+                            height="500"
+                            style="cursor: pointer;"
+                            onclick={`openOverlay('${post.data.heroImage}')`}
+                        />
+                    </div>
+                )}
+            </article>
+        ))
+    }
+</div>
+
+<div id="overlay" class="overlay" onclick="closeOverlay(event)">
+    <span class="close" onclick="closeOverlay(event)">&times;</span>
+    <img id="overlayImage" src="" alt="" />
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Dropdown elements
+        const dropdownButton = document.querySelector(
+            ".dropdown-button",
+        ) as HTMLButtonElement | null;
+        const dropdownMenu = document.querySelector(
+            ".dropdown-menu",
+        ) as HTMLElement | null;
+        const selectedText = document.querySelector(
+            ".selected-category",
+        ) as HTMLElement | null;
+
+        // Filtering functionality
+        const filterButtons = document.querySelectorAll(".filter-tag");
+        const projectCards = document.querySelectorAll(".project-card");
+
+        // Only apply filtering if all elements exist
+        if (filterButtons.length && projectCards.length) {
+            filterButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    // Check if dropdown elements exist before using them
+                    if (dropdownMenu && dropdownButton && selectedText) {
+                        // Close dropdown and update selected text
+                        dropdownMenu.classList.remove("show");
+                        dropdownButton.classList.remove("active");
+                        selectedText.textContent = button.textContent;
+                    }
+
+                    // Remove active class from all buttons
+                    filterButtons.forEach((btn) =>
+                        btn.classList.remove("active"),
+                    );
+
+                    // Add active class to clicked button
+                    button.classList.add("active");
+
+                    const category =
+                        button.getAttribute("data-category") || "all";
+
+                    // Filter projects
+                    projectCards.forEach((card) => {
+                        const cardElement = card as HTMLElement;
+                        if (category === "all") {
+                            cardElement.style.display = "flex";
+                            setTimeout(() => {
+                                cardElement.classList.remove("hidden-project");
+                            }, 10);
+                        } else {
+                            const cardCategories =
+                                cardElement.getAttribute("data-categories");
+                            if (
+                                cardCategories &&
+                                cardCategories.includes(category)
+                            ) {
+                                cardElement.style.display = "flex";
+                                setTimeout(() => {
+                                    cardElement.classList.remove(
+                                        "hidden-project",
+                                    );
+                                }, 10);
+                            } else {
+                                cardElement.classList.add("hidden-project");
+                                setTimeout(() => {
+                                    cardElement.style.display = "none";
+                                }, 300);
+                            }
+                        }
+                    });
+                });
+            });
+        }
+    });
+
+    function openOverlay(imageSrc: string) {
+        const overlay = document.getElementById('overlay');
+        const overlayImage = document.getElementById('overlayImage') as HTMLImageElement | null;
+        if (overlay && overlayImage) {
+            overlayImage.src = imageSrc;
+            overlay.style.display = 'flex';
+        }
+    }
+
+    function closeOverlay(event: MouseEvent) {
+        const overlay = document.getElementById('overlay');
+        if (overlay) {
+            const target = event.target as HTMLElement;
+            if (target.id === 'overlay' || target.classList.contains('close')) {
+                overlay.style.display = 'none';
+            }
+        }
+    }
+</script>
+
+<style>
+    .project-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3.5rem;
+        margin-top: 3rem;
+        max-width: var(--max-width);
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+    .project-card {
+        display: flex;
+        flex-direction: row;
+        gap: 2.5rem;
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(30, 64, 175, 0.08);
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        border: 1px solid var(--blue-100);
+        position: relative;
+        transition:
+            all 0.3s ease-in-out,
+            transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+
+    .project-card.hidden {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+
+    .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(30, 64, 175, 0.12);
+        border-color: var(--blue-200);
+    }
+
+    .project-card.card2 {
+        flex-direction: row-reverse;
+    }
+    .project-content {
+        flex: 1;
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 2; /* Au-dessus de l'effet de brillance */
+        min-width: 0; /* Permet au flex item de rétrécir en dessous de sa taille de contenu */
+    }
+    .project-image {
+        flex: 1;
+        overflow: hidden;
+        position: relative;
+        min-height: 320px;
+        max-height: 320px;
+        background-color: var(--blue-50);
+        min-width: 0; /* Allows flex item to shrink below its content size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+    }
+    @media (max-width: 992px) {
+        .project-content,
+        .project-image {
+            min-width: 0; /* Permettre aux éléments de rétrécir en-dessous de leur contenu */
+        }
+        .project-image {
+            min-height: 280px;
+            max-height: 280px;
+        }
+    }
+    .project-img {
+        width: 100%;
+        height: 100%;
+        max-height: 320px;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: transform 0.7s ease;
+        transform-origin: center center;
+        display: block;
+        z-index: 1;
+        cursor: pointer;
+    }
+
+    .project-card:hover .project-img {
+        transform: scale(1.08);
+    }
+
+    .project-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.2rem;
+        color: var(--blue-900);
+        font-weight: 700;
+        position: relative;
+        display: inline-block;
+    }
+
+    .project-title::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        width: 40px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--blue-600), var(--blue-400));
+        border-radius: 2px;
+    }
+
+    .project-description {
+        margin-bottom: 1.8rem;
+        line-height: 1.7;
+        color: var(--blue-700);
+        flex: 1;
+        font-size: 1.05rem;
+    }
+
+    .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.8rem;
+        font-size: 0.9rem;
+    }
+    .project-date {
+        color: var(--blue-600);
+        font-weight: 500;
+        background-color: var(--blue-50);
+        padding: 0.3rem 0.8rem;
+        border-radius: 6px;
+    }
+
+    .project-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+    .project-tag {
+        background: linear-gradient(to right, var(--blue-100), var(--blue-50));
+        color: var(--blue-800);
+        padding: 0.4rem 0.9rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .project-tag:hover {
+        background: linear-gradient(to right, var(--blue-200), var(--blue-100));
+        transform: translateY(-2px);
+    }
+    .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background-color: var(--blue-600);
+        color: white;
+        padding: 0.9rem 1.8rem;
+        border-radius: 12px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        align-self: flex-start;
+        text-decoration: none;
+    }
+
+    .project-link::after {
+        content: "→";
+        transition: transform 0.3s ease;
+    }
+
+    .project-link:hover {
+        background-color: var(--blue-700);
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(30, 64, 175, 0.2);
+    }
+
+    .project-link:hover::after {
+        transform: translateX(4px);
+    }
+    /* Animation pour les cards */
+    /* Ajout d'une ombre décorative qui se déplace au survol */
+    .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 16px;
+        background: linear-gradient(135deg, var(--blue-300), transparent);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: -1;
+    }
+
+    .project-card:hover::before {
+        opacity: 0.1;
+    }
+
+    /* Dropdown Styles */
+    .dropdown-container {
+        position: relative;
+        z-index: 100;
+    }
+
+    .dropdown-button {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        background: linear-gradient(to right, var(--blue-100), var(--blue-50));
+        border: 1px solid var(--blue-200);
+        padding: 0.9rem 1.5rem;
+        border-radius: 12px;
+        font-size: 1rem;
+        color: var(--blue-800);
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(30, 64, 175, 0.08);
+    }
+
+    .dropdown-button:hover {
+        border-color: var(--blue-400);
+        box-shadow: 0 6px 15px rgba(30, 64, 175, 0.12);
+        transform: translateY(-1px);
+    }
+
+    .dropdown-button.active {
+        border-color: var(--blue-500);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .dropdown-button svg {
+        transition: transform 0.3s ease;
+        color: var(--blue-600);
+    }
+
+    .dropdown-button.active svg {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(30, 64, 175, 0.15);
+        width: 220px;
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        visibility: hidden;
+        border: 1px solid var(--blue-100);
+    }
+
+    .dropdown-menu.show {
+        max-height: 350px;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .filter-tag {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 1rem 1.2rem;
+        border: none;
+        background: none;
+        font-size: 0.95rem;
+        color: var(--blue-700);
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid rgba(59, 130, 246, 0.08);
+    }
+
+    .filter-tag:last-child {
+        border-bottom: none;
+    }
+
+    .filter-tag:hover {
+        background-color: var(--blue-50);
+        color: var(--blue-900);
+    }
+
+    .filter-tag.active {
+        background-color: var(--blue-100);
+        color: var(--blue-800);
+        font-weight: 600;
+        padding-left: 1.5rem;
+    }
+
+    .filter-tag.active::before {
+        content: "";
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        background-color: var(--blue-600);
+        border-radius: 50%;
+        margin-right: 8px;
+        vertical-align: middle;
+        margin-top: -2px;
+    } /* Responsive */
+    @media (max-width: 768px) {
+        .project-card,
+        .project-card.card2 {
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .project-image {
+            order: -1;
+            min-height: 220px;
+            max-height: 220px;
+            width: 100%;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+            width: 100%;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+        }
+
+        .project-description {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .project-img {
+            max-height: 220px;
+            position: relative;
+        }
+
+        .project-link {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.95rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .project-image {
+            min-height: 200px;
+            max-height: 200px;
+        }
+
+        .project-img {
+            max-height: 200px;
+        }
+
+        .project-content {
+            padding: 1.25rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .project-image {
+            min-height: 180px;
+            max-height: 180px;
+        }
+
+        .project-img {
+            max-height: 180px;
+        }
+
+        .project-content {
+            padding: 1.2rem;
+        }
+
+        .project-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+
+        .project-tags {
+            width: 100%;
+        }
+    }
+    @media (min-width: 1024px) {
+        .project-grid {
+            grid-template-columns: 1fr;
+            max-width: var(--max-width);
+            width: 100%;
+        }
+
+        .project-card {
+            width: 100%;
+            height: auto; /* Permet à la carte de s'adapter à son contenu */
+        }
+
+        .project-content,
+        .project-image {
+            min-width: 0;
+            flex-basis: 50%;
+            max-width: 50%; /* S'assure que chaque élément prend bien 50% */
+        }
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+    }
+
+    .overlay .close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+    }
+</style>

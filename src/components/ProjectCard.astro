@@ -1,0 +1,240 @@
+---
+export interface Props {
+    title: string;
+    description: string;
+    imageUrl: string;
+    projectUrl: string;
+    imageAlt: string;
+    variant?: "card1" | "card2";
+}
+
+const {
+    title,
+    description,
+    imageUrl,
+    projectUrl,
+    imageAlt,
+    variant = "card1",
+} = Astro.props;
+---
+
+<article class={variant} data-aos="fade-up">
+    <article class="left__card">
+        <div class="card__info">
+            <h2 class="card__title">{title}</h2>
+            <p class="card__description">{description}</p>
+            <a class="CTA3" href={projectUrl}>View Project</a>
+        </div>
+    </article>
+    <article class="right__card">
+        <img
+            class={variant === "card1" ? "imgprojet" : "imgprojet2"}
+            src={imageUrl}
+            alt={imageAlt}
+            style="cursor: pointer;"
+            onclick={`openOverlay('${imageUrl}')`}
+        />
+    </article>
+</article>
+
+<div id="overlay" class="overlay" onclick="closeOverlay(event)">
+    <span class="close" onclick="closeOverlay(event)">&times;</span>
+    <img id="overlayImage" src="" alt="" />
+</div>
+
+<script>
+    function openOverlay(imageSrc: string) {
+        const overlay = document.getElementById('overlay');
+        const overlayImage = document.getElementById('overlayImage') as HTMLImageElement | null;
+        if (overlay && overlayImage) {
+            overlayImage.src = imageSrc;
+            overlay.style.display = 'flex';
+        }
+    }
+
+    function closeOverlay(event: MouseEvent) {
+        const overlay = document.getElementById('overlay');
+        if (overlay) {
+            const target = event.target as HTMLElement;
+            if (target.id === 'overlay' || target.classList.contains('close')) {
+                overlay.style.display = 'none';
+            }
+        }
+    }
+</script>
+
+<style>
+    article {
+        display: flex;
+        margin-bottom: 4rem;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .card1 {
+        flex-direction: row;
+    }
+
+    .card2 {
+        flex-direction: row-reverse;
+    }
+
+    .left__card {
+        flex: 1;
+        min-width: 0; /* Allow content to shrink below its minimum content size */
+    }
+
+    .right__card {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        min-width: 0; /* Allow content to shrink below its minimum content size */
+        overflow: hidden; /* Ensure no overflow from images */
+        border-radius: 8px;
+        max-height: 400px;
+    }
+
+    .card__title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .card__description {
+        margin-bottom: 2rem;
+        max-width: 500px;
+        color: #555;
+        line-height: 1.6;
+    }
+
+    .CTA3 {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background-color: #000;
+        color: white;
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: bold;
+        transition: all 0.3s ease;
+    }
+
+    .CTA3:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+    }
+
+    .imgprojet,
+    .imgprojet2 {
+        max-width: 100%;
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .overlay img {
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    .overlay .close {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 2rem;
+        color: white;
+        cursor: pointer;
+    }
+
+    @media (max-width: 992px) {
+        .imgprojet,
+        .imgprojet2 {
+            max-height: 320px;
+        }
+
+        .right__card {
+            max-height: 320px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        article {
+            flex-direction: column !important;
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .left__card,
+        .right__card {
+            width: 100%;
+            max-width: 100%;
+            max-height: 280px;
+        }
+
+        .imgprojet,
+        .imgprojet2 {
+            max-height: 280px;
+        }
+
+        .card__title {
+            font-size: 1.6rem;
+        }
+
+        .card__description {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .card__title {
+            font-size: 1.5rem;
+        }
+
+        .right__card {
+            max-height: 220px;
+        }
+
+        .imgprojet,
+        .imgprojet2 {
+            max-height: 220px;
+        }
+
+        .CTA3 {
+            padding: 0.7rem 1.3rem;
+            font-size: 0.95rem;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .right__card {
+            max-height: 180px;
+        }
+
+        .imgprojet,
+        .imgprojet2 {
+            max-height: 180px;
+        }
+
+        .card__title {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+    }
+</style>

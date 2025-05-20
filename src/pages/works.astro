@@ -1,0 +1,90 @@
+---
+import { getCollection } from "astro:content";
+import Basic from "../layouts/Basic.astro";
+import Projects from "../components/Projects.astro";
+import ProjectGrid from "../components/ProjectGrid.astro";
+
+const allWorks = await getCollection("works");
+// Get all unique tags from all works
+const allTags = [
+    "Tous",
+    ...new Set(allWorks.flatMap((post: any) => post.data.tags || [])),
+].sort();
+
+// Récupère le tag de l'URL s'il existe
+const urlTag = Astro.url.searchParams.get("tag");
+const activeTag = urlTag && allTags.includes(urlTag) ? urlTag : "Tous";
+---
+
+<Basic title="Projets | Jean-José Muller">
+    <section class="works-section page-section">
+        <h1 class="section-title" data-aos="fade-up">Mes Projets</h1>
+        <p class="section-description" data-aos="fade-up" data-aos-delay="100">
+            Découvrez mes différents projets en design, développement web et
+            communication visuelle.
+        </p>
+        <Projects
+            showHeader={false}
+            showButton={false}
+            showFilters={true}
+            activeTag={activeTag}
+        >
+            <ProjectGrid />
+        </Projects>
+    </section>
+</Basic>
+
+<style>
+    .works-section {
+        padding: 5rem 2rem;
+        background-color: white;
+        position: relative;
+        overflow: hidden;
+        min-height: 70vh;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        text-align: center;
+        color: var(--blue-900);
+        font-weight: 700;
+    }
+    .section-description {
+        max-width: 600px;
+        margin: 0 auto 3rem;
+        text-align: center;
+        color: var(--blue-700);
+        line-height: 1.7;
+        font-size: 1.1rem;
+    }
+    @media (max-width: 768px) {
+        .works-section {
+            padding: 3rem 1.5rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+        }
+
+        .section-description {
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .works-section {
+            padding: 2.5rem 1rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+        }
+
+        .section-description {
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+    }
+</style>

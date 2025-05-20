@@ -1,0 +1,59 @@
+---
+export interface Props {
+    title: string;
+    description?: string;
+}
+
+const {
+    title,
+    description = "Portfolio de Jean-José Muller, étudiant dans les métiers du multimédia et de l'internet",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content={description} />
+        <title>{title}</title>
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css"
+        />
+        <script
+            is:inline
+            src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"
+        ></script>
+    </head>
+    <body>
+        <slot />
+        <script
+            is:inline
+            src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+        <script is:inline>
+            document.addEventListener("DOMContentLoaded", function () {
+                AOS.init();
+            });
+        </script>
+    </body>
+</html>
+
+<style is:global>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        background-color: #fff;
+        color: #333;
+        line-height: 1.6;
+    }
+
+    a {
+        color: inherit;
+    }
+</style>
