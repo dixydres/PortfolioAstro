@@ -3,7 +3,8 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://muller-jeanjose.fr',
+  site: 'https://dixydres.github.io',
+  base: '/Portfolio',
   integrations: [],
   markdown: {
     shikiConfig: {
