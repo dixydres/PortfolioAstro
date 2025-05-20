@@ -25,8 +25,8 @@ const {
 
 function getPublicPath(path: string | undefined): string | undefined {
     if (!path) return undefined;
-    if (path.startsWith('http://') || path.startsWith('https://')) return path;
-    return path.startsWith('/') ? `/Portfolio${path}` : `/Portfolio/${path}`;
+    if (path.startsWith("http://") || path.startsWith("https://")) return path;
+    return path.startsWith("/") ? `/Portfolio${path}` : `/Portfolio/${path}`;
 }
 
 // Process heroImage path
@@ -54,7 +54,11 @@ const processedHeroImage = getPublicPath(heroImage);
         <div class="hero">
             {
                 processedHeroImage && (
-                    <img src={processedHeroImage} alt={title} class="hero-image" />
+                    <img
+                        src={processedHeroImage}
+                        alt={title}
+                        class="hero-image"
+                    />
                 )
             }
             <div class="hero-overlay"></div>

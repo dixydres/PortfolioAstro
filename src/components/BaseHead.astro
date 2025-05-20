@@ -20,43 +20,90 @@ const {
 <link rel="icon" type="image/jpeg" href="/Portfolio/Muller_Photo.jpeg" />
 <link rel="apple-touch-icon" href="/Portfolio/Muller_Photo.jpeg" />
 
+<!-- Asset path handling -->
+<script is:inline>
+  window.portfolioBase = '/Portfolio';
+  
+  function fixAssetPath(url) {
+    if (!url || url.startsWith('http') || url.startsWith('data:') || url.startsWith('blob:')) return url;
+    if (url.startsWith(window.portfolioBase)) return url;
+    return url.startsWith('/') ? `${window.portfolioBase}${url}` : `${window.portfolioBase}/${url}`;
+  }
+
+  // Fix all asset paths after DOM loads
+  document.addEventListener('DOMContentLoaded', function() {
+    // Fix stylesheet paths
+    document.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (href) link.setAttribute('href', fixAssetPath(href));
+    });
+
+    // Fix image paths
+    document.querySelectorAll('img[src]').forEach(img => {
+      const src = img.getAttribute('src');
+      if (src) img.setAttribute('src', fixAssetPath(src));
+    });
+
+    // Fix video sources
+    document.querySelectorAll('source[src]').forEach(source => {
+      const src = source.getAttribute('src');
+      if (src) source.setAttribute('src', fixAssetPath(src));
+    });
+
+    // Fix background images
+    document.querySelectorAll('*[style*="url("]').forEach(el => {
+      const style = el.getAttribute('style');
+      if (style) {
+        el.setAttribute('style', style.replace(
+          /url\(['"]?([^'")\s]+)['"]?\)/g,
+          (match, url) => `url('${fixAssetPath(url)}')`
+        ));
+      }
+    });
+  });
+
 <!-- Ensure assets are loaded with correct base path -->
 <script>
     function fixAssetPath(url) {
-        if (url.startsWith('http://') || url.startsWith('https://')) return url;
-        if (url.startsWith('/Portfolio/')) return url;
-        return url.startsWith('/') ? `/Portfolio${url}` : `/Portfolio/${url}`;
+        if (url.startsWith("http://") || url.startsWith("https://")) return url;
+        if (url.startsWith("/Portfolio/")) return url;
+        return url.startsWith("/") ? `/Portfolio${url}` : `/Portfolio/${url}`;
     }
 
     document.addEventListener("DOMContentLoaded", () => {
         // Fix stylesheet paths
-        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
-            const href = link.getAttribute('href');
-            if (href) link.setAttribute('href', fixAssetPath(href));
+        document.querySelectorAll("link[rel='stylesheet']").forEach((link) => {
+            const href = link.getAttribute("href");
+            if (href) link.setAttribute("href", fixAssetPath(href));
         });
 
         // Fix image paths
-        document.querySelectorAll("img[src]").forEach(img => {
-            const src = img.getAttribute('src');
-            if (src) img.setAttribute('src', fixAssetPath(src));
+        document.querySelectorAll("img[src]").forEach((img) => {
+            const src = img.getAttribute("src");
+            if (src) img.setAttribute("src", fixAssetPath(src));
         });
 
         // Fix video sources
-        document.querySelectorAll("source[src]").forEach(source => {
-            const src = source.getAttribute('src');
-            if (src) source.setAttribute('src', fixAssetPath(src));
+        document.querySelectorAll("source[src]").forEach((source) => {
+            const src = source.getAttribute("src");
+            if (src) source.setAttribute("src", fixAssetPath(src));
         });
 
         // Fix background images in CSS
-        document.querySelectorAll("[style*='background-image']").forEach(el => {
-            const style = el.getAttribute('style');
-            if (style) {
-                el.setAttribute('style', style.replace(
-                    /url\(['"]?([^'"]*?)['"]?\)/g,
-                    (match, url) => `url('${fixAssetPath(url)}')`
-                ));
-            }
-        });
+        document
+            .querySelectorAll("[style*='background-image']")
+            .forEach((el) => {
+                const style = el.getAttribute("style");
+                if (style) {
+                    el.setAttribute(
+                        "style",
+                        style.replace(
+                            /url\(['"]?([^'"]*?)['"]?\)/g,
+                            (match, url) => `url('${fixAssetPath(url)}')`,
+                        ),
+                    );
+                }
+            });
     });
 </script>
 <meta name="generator" content={Astro.generator} />

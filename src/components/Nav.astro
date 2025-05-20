@@ -44,15 +44,19 @@
                 menuToggle.classList.toggle("active");
                 navMenu.classList.toggle("active");
                 // Prevent body scrolling when menu is open
-                body.style.overflow = navMenu.classList.contains("active") ? "hidden" : "";
+                body.style.overflow = navMenu.classList.contains("active")
+                    ? "hidden"
+                    : "";
             });
         }
 
         // Close menu when clicking outside
         document.addEventListener("click", (e) => {
-            if (navMenu?.classList.contains("active") && 
-                !navMenu.contains(e.target) && 
-                !menuToggle?.contains(e.target)) {
+            if (
+                navMenu?.classList.contains("active") &&
+                !navMenu.contains(e.target) &&
+                !menuToggle?.contains(e.target)
+            ) {
                 menuToggle?.classList.remove("active");
                 navMenu.classList.remove("active");
                 body.style.overflow = "";

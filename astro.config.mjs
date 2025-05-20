@@ -7,29 +7,27 @@ export default defineConfig({
   base: '/Portfolio',
   output: 'static',
   build: {
-    assets: '_assets'
+    assets: 'assets'
   },
   vite: {
     base: '/Portfolio/',
     build: {
+      assetsInlineLimit: 0,
       cssCodeSplit: false,
       rollupOptions: {
         output: {
-          assetFileNames: (assetInfo) => {
-            if (!assetInfo.name) return 'assets/[name][extname]';
-            const ext = assetInfo.name.split('.').pop();
-            if (!ext) return 'assets/[name][extname]';
+          assetFileNames: ({ name }) => {
+            if (!name) return 'assets/[name].[hash][extname]';
             
-            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
-              return 'assets/img/[name][extname]';
-            }
-            if (ext === 'css') {
-              return 'assets/styles/[name][extname]';
-            }
-            if (ext === 'js') {
-              return 'assets/scripts/[name][extname]';
-            }
-            return 'assets/[name][extname]';
+            if (name.endsWith('.css')) return 'assets/styles/[name].[hash][extname]';
+            if (name.endsWith('.js')) return 'assets/js/[name].[hash][extname]';
+            if (/\.(png|jpe?g|gif|svg|webp|ico)$/.test(name)) return 'assets/images/[name].[hash][extname]';
+            if (/\.(mp4|webm|ogg)$/.test(name)) return 'assets/videos/[name].[hash][extname]';
+            
+            return 'assets/[name].[hash][extname]';
+          },
+          chunkFileNames: 'assets/js/[name].[hash].js',
+          entryFileNames: 'assets/js/[name].[hash].js',
           },
           chunkFileNames: 'assets/js/[name].js',
           entryFileNames: 'assets/js/[name].js',
