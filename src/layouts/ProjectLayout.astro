@@ -26,7 +26,20 @@ const {
 function getPublicPath(path: string | undefined): string | undefined {
     if (!path) return undefined;
     if (path.startsWith("http://") || path.startsWith("https://")) return path;
-    return path.startsWith("/") ? `/Portfolio${path}` : `/Portfolio/${path}`;
+
+    // Remove any duplicate /Portfolio prefixes
+    while (path.includes("/Portfolio/Portfolio/")) {
+        path = path.replace("/Portfolio/Portfolio/", "/Portfolio/");
+    }
+
+    // Ensure single /Portfolio prefix
+    if (!path.startsWith("/Portfolio")) {
+        path = path.startsWith("/")
+            ? `/Portfolio${path}`
+            : `/Portfolio/${path}`;
+    }
+
+    return path;
 }
 
 // Process heroImage path

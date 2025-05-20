@@ -57,38 +57,37 @@ Dans le cadre de ce projet, j'ai créé plusieurs modèles 3D inspirés de l'uni
     <svg viewBox="0 0 24 24">
       <path d="M8.59 16.59L10 18l6-6-6-6-1.41 1.41L13.17 12z"/>
     </svg>
-  </button>
-  <div class="image-row">
+  </button>  <div class="image-row">
     <div class="image-container">
-      <img src="/Property-1cartboard_rendered.png" alt="Maison style Animal Crossing">
+      <img src="/Portfolio/Property-1cartboard_rendered.png" alt="Maison style Animal Crossing">
       <div class="image-overlay">
         <div class="overlay-title">Maison style Animal Crossing</div>
         <div class="overlay-description">Modèle 3D d'une maison inspirée du style visuel caractéristique du jeu Animal Crossing</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/Property-1flower_render.png" alt="Jardin luxuriant">
+      <img src="/Portfolio/Property-1flower_render.png" alt="Jardin luxuriant">
       <div class="image-overlay">
         <div class="overlay-title">Jardin luxuriant</div>
         <div class="overlay-description">Composition florale dans l'univers coloré et stylisé de Leafbay</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/atm.png" alt="DAB ludique">
+      <img src="/Portfolio/atm.png" alt="DAB ludique">
       <div class="image-overlay">
         <div class="overlay-title">DAB interactif</div>
         <div class="overlay-description">Distributeur automatique de billets adapté à l'univers ludique de la plateforme</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/axe_render_t.png" alt="Hache détaillée">
+      <img src="/Portfolio/axe_render_t.png" alt="Hache détaillée">
       <div class="image-overlay">
         <div class="overlay-title">Hache détaillée</div>
         <div class="overlay-description">Modélisation 3D d'un outil emblématique de l'univers du jeu</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/flower2_render.png" alt="Composition florale">
+      <img src="/Portfolio/flower2_render.png" alt="Composition florale">
       <div class="image-overlay">
         <div class="overlay-title">Composition florale</div>
         <div class="overlay-description">Élément décoratif intégré dans l'identité visuelle de la plateforme</div>
@@ -102,8 +101,8 @@ Dans le cadre de la promotion de la plateforme Leafbay, j'ai réalisé une vidé
 
 
 
-<video controls poster="/miniature.png" style="width:100%; max-width:400px; margin: 2rem auto; display:block; border-radius:12px; background:#eaeaea; object-fit:contain;">
-  <source src="/Muller_leafbay.mp4" type="video/mp4">
+<video controls poster="/Portfolio/miniature.png" style="width:100%; max-width:400px; margin: 2rem auto; display:block; border-radius:12px; background:#eaeaea; object-fit:contain;">
+  <source src="/Portfolio/Muller_leafbay.mp4" type="video/mp4">
   Votre navigateur ne supporte pas la lecture vidéo.
 </video>
 

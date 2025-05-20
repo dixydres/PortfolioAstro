@@ -26,8 +26,18 @@ const {
   
   function fixAssetPath(url) {
     if (!url || url.startsWith('http') || url.startsWith('data:') || url.startsWith('blob:')) return url;
-    if (url.startsWith(window.portfolioBase)) return url;
-    return url.startsWith('/') ? `${window.portfolioBase}${url}` : `${window.portfolioBase}/${url}`;
+    
+    // Remove any duplicate /Portfolio prefixes
+    while (url.includes('/Portfolio/Portfolio/')) {
+      url = url.replace('/Portfolio/Portfolio/', '/Portfolio/');
+    }
+    
+    // Ensure single /Portfolio prefix
+    if (!url.startsWith('/Portfolio')) {
+      url = url.startsWith('/') ? `/Portfolio${url}` : `/Portfolio/${url}`;
+    }
+    
+    return url;
   }
 
   // Fix all asset paths after DOM loads
