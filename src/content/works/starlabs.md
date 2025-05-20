@@ -2,7 +2,7 @@
 title: "S.T.A.R. Labs"
 description: "Pour ce projet, j’ai imaginé une application visant à aider un personnage fictif. J’ai choisi l’univers des superhéros (Flash, Supergirl, Arrow). L’objectif était de concevoir une interface permettant de signaler des crimes et délits."
 pubDate: 2023-09-15
-heroImage: "/iPhone 15 Pro.svg"
+heroImage: "/Portfolio/iPhone 15 Pro.svg"
 projectLink: "https://www.figma.com/proto/pOGLqH2DhM69opurDZmewf/Muller-Jean-Jos%C3%A9---S.T.A.R-labs?page-id=71%3A1118&node-id=164-629&node-type=instance&viewport=1502%2C1396%2C0.18&t=85y9D3tGY8NTQCEE-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=71%3A1124&show-proto-sidebar=1"
 tags: ["UX/UI Design", "Mobile App", "Figma"]
 order: 1
@@ -37,7 +37,7 @@ S.T.A.R. Labs est une maquette d’application mobile conçue pour aider les sup
 
 Le projet consistait à imaginer une interface mobile intuitive, s’inspirant de l’esthétique high-tech des laboratoires S.T.A.R. L’application, bien que fictive, vise à représenter un lien entre les citoyens et les super-héros pour une intervention rapide face aux menaces urbaines.
 
-<img src="/iPhone 15 Pro.svg" alt="Aperçu de l'application S.T.A.R. Labs" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" />
+<img src="/Portfolio/iPhone 15 Pro.svg" alt="Aperçu de l'application S.T.A.R. Labs" style="width: 100%; max-width: 800px; margin: 2rem auto; display: block;" />
 
 ---
 

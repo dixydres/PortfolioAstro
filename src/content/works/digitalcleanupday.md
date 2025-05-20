@@ -2,7 +2,7 @@
 title: "Digital Cleanup Day"
 description: "Conception et développement d'un site web éco-responsable pour l'événement Digital Cleanup Day visant à sensibiliser le public à la pollution numérique. J'ai également créé divers supports de communication et réalisé une vidéo promotionnelle en motion design."
 pubDate: 2023-12-21
-heroImage: "/Digitalcleanupday.svg"
+heroImage: "/Portfolio/Digitalcleanupday.svg"
 projectLink: "https://www.figma.com/design/HWf0hZHhvJ6nDPHEI0pry6/GR06---Muller_Lemesle_Dejean_Gunduz?node-id=234-2685&t=VbB88V1izK0Mb8i5-1"
 tags: ["UX/UI Design", "Motion design", "Méthode agile"]
 order: 4

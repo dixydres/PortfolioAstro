@@ -2,7 +2,7 @@
 title: "Sony Electronics"
 description: "Pour ce projet nous avons du créer une boutique de E-commerce avec la possibilité de récupérer les commandes en click & collect. Nous avons du le réalisé en bînome à l'aide de Wordpress mais aussi de Woocomerce principalement."
 pubDate: 2023-11-15
-heroImage: "/sony.svg"
+heroImage: "/Portfolio/sony.svg"
 projectLink: "https://sae10.mmidev.fr"
 tags: ["E-commerce", "WordPress" ]
 order: 3

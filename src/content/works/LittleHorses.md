@@ -2,7 +2,7 @@
 title: "Little Horses"
 description: "Pour ce projet j'ai du créer toute la communication visuelle d'un bar à thème de jeu de société à copenhague. En passant de la création de logo à la création de maquette etc..."
 pubDate: 2024-02-15
-heroImage: "/littlehorses.svg"
+heroImage: "/Portfolio/littlehorses.svg"
 projectLink: "https://www.figma.com/design/nQ8eJY2lYhvD6hn6ktfW78/SAE4.01?node-id=371-6113&t=padjm6X8bgWC19D0-1"
 tags: ["Branding", "Identité visuelle", "UX/UI Design"]
 order: 5

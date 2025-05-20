@@ -2,7 +2,7 @@
 title: "Leafbay"
 description: "Conception et développement d'une plateforme e-commerce inspirée de l'univers Animal Crossing: New Horizons. Ce projet de SAÉ inclut la création graphique 3D, le développement web et la production audiovisuelle."
 pubDate: 2024-03-15
-heroImage: "/Leafbay.svg"
+heroImage: "/Portfolio/Leafbay.svg"
 projectLink: "https://www.mullersae402.mmidev.fr/"
 tags: ["E-commerce", "UX/UI Design", "3D Modélisation", "WordPress"]
 order: 6
