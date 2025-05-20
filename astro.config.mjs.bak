@@ -1,0 +1,41 @@
+// @ts-check
+import { defineConfig } from 'astro/config';
+
+// https://astro.build/config
+export default defineConfig({
+  site: 'https://dixydres.github.io',
+  base: '/Portfolio',
+  output: 'static',
+  build: {
+    assets: '_assets'
+  },
+  vite: {
+    base: '/Portfolio/',
+    build: {
+      cssCodeSplit: false,
+      rollupOptions: {
+        output: {
+          assetFileNames: (assetInfo) => {
+            const info = assetInfo?.name ?? '';
+            if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(extType)) {
+              extType = 'img';
+            }
+            return `assets/${extType}/[name][extname]`;
+          },
+          chunkFileNames: 'assets/js/[name].js',
+          entryFileNames: 'assets/js/[name].js',
+        },
+      },
+    },
+  },
+  integrations: [portfolioAssetPaths()],
+  markdown: {
+    shikiConfig: {
+      theme: 'dracula',
+      wrap: true
+    }
+  },
+  devToolbar: {
+    enabled: false
+  }
+});

@@ -3,15 +3,34 @@ import Basic from "./Basic.astro";
 import FormattedDate from "../components/FormattedDate.astro";
 import Prose from "../components/Prose.astro";
 
+interface Props {
+    title: string;
+    description?: string;
+    pubDate: Date;
+    updatedDate?: Date;
+    heroImage?: string;
+    tags?: string[];
+    projectLink?: string;
+}
+
 const {
     title,
     description,
     pubDate,
     updatedDate,
     heroImage,
-    tags,
+    tags = [],
     projectLink,
 } = Astro.props;
+
+function getPublicPath(path: string | undefined): string | undefined {
+    if (!path) return undefined;
+    if (path.startsWith('http://') || path.startsWith('https://')) return path;
+    return path.startsWith('/') ? `/Portfolio${path}` : `/Portfolio/${path}`;
+}
+
+// Process heroImage path
+const processedHeroImage = getPublicPath(heroImage);
 ---
 
 <Basic title={title} description={description}>
@@ -34,8 +53,8 @@ const {
     <article class="post">
         <div class="hero">
             {
-                heroImage && (
-                    <img src={heroImage} alt={title} class="hero-image" />
+                processedHeroImage && (
+                    <img src={processedHeroImage} alt={title} class="hero-image" />
                 )
             }
             <div class="hero-overlay"></div>

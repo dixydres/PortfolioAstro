@@ -37,7 +37,7 @@ Leafbay est une plateforme e-commerce inspirée de l'univers d'Animal Crossing: 
 
 Inspiré par l'esthétique et les mécaniques du jeu Animal Crossing: New Horizons, Leafbay propose une expérience d'achat immersive dans un univers coloré et ludique. La plateforme permet aux utilisateurs d'acheter des objets, meubles et vêtements inspirés du jeu, créant ainsi un pont entre l'expérience virtuelle et le monde réel.
 
-![Animal Crossing Interface](/Leafbay.svg)
+![Animal Crossing Interface](/Portfolio/Leafbay.svg)
 
 
 
