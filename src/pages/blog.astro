@@ -39,10 +39,9 @@ const sortedPosts = posts.sort(
                                             <span class="tag">{tag}</span>
                                         ))}
                                     </div>
-                                )}
-                            </div>
+                                )}                            </div>
                             <p class="blog-excerpt">{post.data.description}</p>
-                            <a href={`/blog/${post.slug}/`} class="read-more">
+                            <a href={`${import.meta.env.BASE_URL}blog/${post.slug}/`} class="read-more">
                                 Lire l'article →
                             </a>
                         </div>
