@@ -7,114 +7,17 @@ export interface Props {
     image?: string;
 }
 
-const {
-    title,
+const {    title,
     description = siteConfig.description,
-    image = "/Portfolio/Muller_Photo.jpeg",
+    image = "/PortfolioAstro/Muller_Photo.jpeg",
 } = Astro.props;
 ---
 
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<link rel="icon" type="image/jpeg" href="/Portfolio/Muller_Photo.jpeg" />
-<link rel="apple-touch-icon" href="/Portfolio/Muller_Photo.jpeg" />
-
-<!-- Asset path handling -->
-<script is:inline>
-    window.portfolioBase = "/Portfolio";
-
-    function fixAssetPath(url) {
-        if (
-            !url ||
-            url.startsWith("http") ||
-            url.startsWith("data:") ||
-            url.startsWith("blob:") ||
-            url.startsWith("mailto:") ||
-            url.startsWith("#")
-        ) {
-            return url;
-        }
-
-        // Clean up the URL and normalize slashes
-        url = url.replace(/\/+/g, "/");
-
-        // Remove duplicate Portfolio prefixes
-        while (url.includes("/Portfolio/Portfolio/")) {
-            url = url.replace("/Portfolio/Portfolio/", "/Portfolio/");
-        }
-
-        // Remove trailing slashes
-        url = url.replace(/\/+$/, "");
-
-        // Ensure Portfolio prefix
-        if (!url.startsWith("/Portfolio/")) {
-            url = url.startsWith("/")
-                ? `/Portfolio${url}`
-                : `/Portfolio/${url}`;
-        }
-
-        // Final cleanup of any double slashes
-        return url.replace(/\/+/g, "/");
-    }
-
-    function fixAllAssetPaths() {
-        // Fix stylesheet paths
-        document.querySelectorAll('link[rel="stylesheet"]').forEach((link) => {
-            const href = link.getAttribute("href");
-            if (href) link.setAttribute("href", fixAssetPath(href));
-        });
-
-        // Fix image paths
-        document.querySelectorAll("img[src]").forEach((img) => {
-            const src = img.getAttribute("src");
-            if (src) img.setAttribute("src", fixAssetPath(src));
-        });
-
-        // Fix video sources
-        document.querySelectorAll("source[src]").forEach((source) => {
-            const src = source.getAttribute("src");
-            if (src) source.setAttribute("src", fixAssetPath(src));
-        });
-
-        // Fix anchor hrefs
-        document.querySelectorAll("a[href]").forEach((a) => {
-            const href = a.getAttribute("href");
-            if (
-                href &&
-                !href.startsWith("http") &&
-                !href.startsWith("mailto:") &&
-                !href.startsWith("#")
-            ) {
-                a.setAttribute("href", fixAssetPath(href));
-            }
-        });
-
-        // Fix background images in CSS
-        document.querySelectorAll('[style*="url("]').forEach((el) => {
-            const style = el.getAttribute("style");
-            if (style) {
-                el.setAttribute(
-                    "style",
-                    style.replace(
-                        /url\(['"]?([^'")\s]+)['"]?\)/g,
-                        (match, url) => `url('${fixAssetPath(url)}')`,
-                    ),
-                );
-            }
-        });
-    }
-
-    // Fix paths on initial load
-    document.addEventListener("DOMContentLoaded", fixAllAssetPaths);
-
-    // Fix paths after any dynamic content updates
-    const observer = new MutationObserver(fixAllAssetPaths);
-    observer.observe(document.documentElement, {
-        childList: true,
-        subtree: true,
-    });
-</script>
+<link rel="icon" type="image/jpeg" href="/PortfolioAstro/Muller_Photo.jpeg" />
+<link rel="apple-touch-icon" href="/PortfolioAstro/Muller_Photo.jpeg" />
 
 <meta name="generator" content={Astro.generator} />
 

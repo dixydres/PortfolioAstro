@@ -2,7 +2,7 @@
 title: "Leafbay"
 description: "Conception et développement d'une plateforme e-commerce inspirée de l'univers Animal Crossing: New Horizons. Ce projet de SAÉ inclut la création graphique 3D, le développement web et la production audiovisuelle."
 pubDate: 2024-03-15
-heroImage: "/Portfolio/Leafbay.svg"
+heroImage: "/PortfolioAstro/Leafbay.svg"
 projectLink: "https://www.mullersae402.mmidev.fr/"
 tags: ["E-commerce", "UX/UI Design", "3D Modélisation", "WordPress"]
 order: 6
@@ -37,7 +37,7 @@ Leafbay est une plateforme e-commerce inspirée de l'univers d'Animal Crossing: 
 
 Inspiré par l'esthétique et les mécaniques du jeu Animal Crossing: New Horizons, Leafbay propose une expérience d'achat immersive dans un univers coloré et ludique. La plateforme permet aux utilisateurs d'acheter des objets, meubles et vêtements inspirés du jeu, créant ainsi un pont entre l'expérience virtuelle et le monde réel.
 
-![Animal Crossing Interface](/Portfolio/assets/images/Leafbay.svg)
+![Animal Crossing Interface](/assets/images/Leafbay.svg)
 
 
 
@@ -59,35 +59,35 @@ Dans le cadre de ce projet, j'ai créé plusieurs modèles 3D inspirés de l'uni
     </svg>
   </button>  <div class="image-row">
     <div class="image-container">
-      <img src="/Portfolio/Property-1cartboard_rendered.png" alt="Maison style Animal Crossing">
+      <img src="/Property-1cartboard_rendered.png" alt="Maison style Animal Crossing">
       <div class="image-overlay">
         <div class="overlay-title">Maison style Animal Crossing</div>
         <div class="overlay-description">Modèle 3D d'une maison inspirée du style visuel caractéristique du jeu Animal Crossing</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/Portfolio/Property-1flower_render.png" alt="Jardin luxuriant">
+      <img src="/Property-1flower_render.png" alt="Jardin luxuriant">
       <div class="image-overlay">
         <div class="overlay-title">Jardin luxuriant</div>
         <div class="overlay-description">Composition florale dans l'univers coloré et stylisé de Leafbay</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/Portfolio/atm.png" alt="DAB ludique">
+      <img src="/atm.png" alt="DAB ludique">
       <div class="image-overlay">
         <div class="overlay-title">DAB interactif</div>
         <div class="overlay-description">Distributeur automatique de billets adapté à l'univers ludique de la plateforme</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/Portfolio/axe_render_t.png" alt="Hache détaillée">
+      <img src="/axe_render_t.png" alt="Hache détaillée">
       <div class="image-overlay">
         <div class="overlay-title">Hache détaillée</div>
         <div class="overlay-description">Modélisation 3D d'un outil emblématique de l'univers du jeu</div>
       </div>
     </div>
     <div class="image-container">
-      <img src="/Portfolio/flower2_render.png" alt="Composition florale">
+      <img src="/flower2_render.png" alt="Composition florale">
       <div class="image-overlay">
         <div class="overlay-title">Composition florale</div>
         <div class="overlay-description">Élément décoratif intégré dans l'identité visuelle de la plateforme</div>
@@ -101,8 +101,8 @@ Dans le cadre de la promotion de la plateforme Leafbay, j'ai réalisé une vidé
 
 
 
-<video controls poster="/Portfolio/miniature.png" style="width:100%; max-width:400px; margin: 2rem auto; display:block; border-radius:12px; background:#eaeaea; object-fit:contain;">
-  <source src="/Portfolio/Muller_leafbay.mp4" type="video/mp4">
+<video controls poster="/miniature.png" style="width:100%; max-width:400px; margin: 2rem auto; display:block; border-radius:12px; background:#eaeaea; object-fit:contain;">
+  <source src="/Muller_leafbay.mp4" type="video/mp4">
   Votre navigateur ne supporte pas la lecture vidéo.
 </video>
 

@@ -23,14 +23,11 @@ const {
     projectLink,
 } = Astro.props;
 
-import { getPublicPath } from "../utils/assetPaths";
-
-// Process heroImage path
-const processedHeroImage = heroImage ? getPublicPath(heroImage) : undefined;
+// Pas besoin de traiter le chemin de l'image
+const processedHeroImage = heroImage;
 ---
 
-<Basic title={title} description={description}>
-    <a href="/Portfolio/works/" class="back-to-top">
+<Basic title={title} description={description}>    <a href="/PortfolioAstro/works/" class="back-to-top">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -157,8 +154,7 @@ const processedHeroImage = heroImage ? getPublicPath(heroImage) : undefined;
         <Prose>
             <slot />
         </Prose>
-        <div class="post-navigation">
-            <a href="/Portfolio/works/" class="back-button">
+        <div class="post-navigation">            <a href="/works/" class="back-button">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"
@@ -615,8 +611,7 @@ const processedHeroImage = heroImage ? getPublicPath(heroImage) : undefined;
     }
 
     document.addEventListener("astro:page-load", () => {
-        const carousel = document.querySelector<HTMLElement>(".carousel");
-        if (!carousel) return;
+        const carousel = document.querySelector<HTMLElement>(".carousel");        if (!carousel) return;
 
         const container = carousel.querySelector<HTMLElement>(
             ".carousel-container",
@@ -634,9 +629,12 @@ const processedHeroImage = heroImage ? getPublicPath(heroImage) : undefined;
         const totalSlides = slides.length;
 
         function updateSlide(index: number): void {
-            container.style.transform = `translateX(-${index * 100}%)`;
+            if (container) {
+                container.style.transform = `translateX(-${index * 100}%)`;
+            }
 
-            dotsContainer.querySelectorAll(".dot").forEach((dot, i) => {
+            if (dotsContainer) {
+                dotsContainer.querySelectorAll(".dot").forEach((dot, i) => {
                 if (i === index) {
                     dot.classList.add("active");
                     dot.setAttribute("aria-current", "true");

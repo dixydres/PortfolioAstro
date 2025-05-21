@@ -2,7 +2,7 @@
 title: "UGC Miam"
 description: "Création d'une identité visuelle et de packagings pour une marque fictive de snacks inspirés de différents genres cinématographiques : science-fiction, western, romance."
 pubDate: 2023-10-12
-heroImage: "/Portfolio/UGC_Minia.svg"
+heroImage: "/PortfolioAstro/UGC_Minia.svg"
 tags: ["Identité visuelle", "Packaging", "Design graphique"]
 order: 2
 ---
@@ -28,7 +28,7 @@ J’ai conçu l’identité visuelle de la marque et l’ensemble des packagings
 ### 🚀 Spacechoco – Science-fiction
 
 <div class="image-container">
-  <img src="/Portfolio/public/spacechoco.png" alt="Packaging Spacechoco" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/Portfolio/public/spacechoco.png')" />
+  <img src="/spacechoco.png" alt="Packaging Spacechoco" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/spacechoco.png')" />
 </div>
 
 Avec Spacechoco, j’ai créé une tablette de chocolat plongée dans un univers galactique :
@@ -44,7 +44,7 @@ Le verso a été épuré pour rendre les informations nutritionnelles facilement
 ### 💘 Chocolove – Romance
 
 <div class="image-container">
-  <img src="/Portfolio/public/chocolove.png" alt="Packaging Chocolove" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/Portfolio/public/chocolove.png')" />
+  <img src="/chocolove.png" alt="Packaging Chocolove" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/chocolove.png')" />
 </div>
 
 **Chocolove** est la version romantique du produit, pensée pour évoquer la douceur et la tendresse :
@@ -60,7 +60,7 @@ Ce packaging vise à transmettre une émotion douce, à la croisée entre gourma
 ### 🤠 Westcola – Western
 
 <div class="image-container">
-  <img src="/Portfolio/public/westcola.png" alt="Packaging Westcola" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/Portfolio/public/westcola.png')" />
+  <img src="/westcola.png" alt="Packaging Westcola" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/westcola.png')" />
 </div>
 
 Avec **Westcola**, j’ai exploré un tout autre registre graphique :
