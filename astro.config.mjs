@@ -3,15 +3,10 @@ import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://dixydres.github.io',
-  base: '/PortfolioAstro',
   output: 'static',
   build: {
     assets: '_assets'
   },
-  outDir: './dist',
-  // Add .nojekyll file to tell GitHub Pages not to use Jekyll
-  publicDir: './public',
   vite: {
     base: '/',
     build: {
