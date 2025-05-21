@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base of the MacBook -->
+  <g id="macbook-base">
+    <!-- Main Body -->
+    <rect x="200" y="300" width="800" height="450" rx="20" ry="20" fill="#d1d1d1" />
+    <!-- Bottom Edge -->
+    <rect x="200" y="750" width="800" height="20" rx="10" ry="10" fill="#b5b5b5" />
+    <!-- Touchpad -->
+    <rect x="400" y="530" width="400" height="180" rx="10" ry="10" fill="#e8e8e8" />
+    <!-- Keyboard Area -->
+    <rect x="250" y="350" width="700" height="150" rx="5" ry="5" fill="#e8e8e8" />
+  </g>
+  
+  <!-- Screen -->
+  <g id="macbook-screen">
+    <!-- Screen Bezel -->
+    <rect x="150" y="50" width="900" height="600" rx="20" ry="20" fill="#ababab" />
+    <!-- Screen Display -->
+    <rect x="175" y="75" width="850" height="550" rx="3" ry="3" fill="#181818" />
+    <!-- Screen Content - Apple Logo -->
+    <path d="M600 300 C600 250, 560 230, 520 230 C480 230, 440 250, 440 300 C440 350, 480 370, 520 370 C560 370, 600 350, 600 300 Z" 
+          fill="none" stroke="#f5f5f7" stroke-width="5" />
+    <path d="M560 230 L560 370" fill="none" stroke="#f5f5f7" stroke-width="5" />
+  </g>
+  
+  <!-- Hinge -->
+  <rect x="580" y="640" width="40" height="10" rx="5" ry="5" fill="#b0b0b0" />
+  
+  <!-- Apple Logo on Lid -->
+  <circle cx="600" cy="175" r="30" fill="none" stroke="#f5f5f7" stroke-width="3" />
+</svg>

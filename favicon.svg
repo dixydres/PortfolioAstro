@@ -1,0 +1,17 @@
+<!-- filepath: c:\Users\jeanj\OneDrive\Bureau\Perso\PortfolioAstro\public\favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <style>
+    rect {
+      fill: #f0f4f8;
+    }
+    @media (prefers-color-scheme: dark) {
+      rect {
+        fill: #1e3a8a;
+      }
+    }
+  </style>
+  <rect width="32" height="32" rx="16" />
+  <foreignObject width="32" height="32">
+    <img width="32" height="32" xmlns="http://www.w3.org/2000/svg" href="/PortfolioAstro/Muller_Photo.jpeg" style="border-radius: 50%;" />
+  </foreignObject>
+</svg>

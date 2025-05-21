@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <!-- Base of the Dell XPS -->
+  <g id="xps-base">
+    <!-- Main Body -->
+    <rect x="200" y="300" width="800" height="450" rx="10" ry="10" fill="#232323" />
+    <!-- Bottom Edge -->
+    <rect x="200" y="750" width="800" height="20" rx="5" ry="5" fill="#161616" />
+    <!-- Touchpad -->
+    <rect x="400" y="550" width="400" height="160" rx="5" ry="5" fill="#3a3a3a" />
+    <!-- Keyboard Area -->
+    <rect x="250" y="350" width="700" height="180" rx="2" ry="2" fill="#2a2a2a" />
+  </g>
+  
+  <!-- Screen -->
+  <g id="xps-screen">
+    <!-- Screen Bezel -->
+    <rect x="150" y="50" width="900" height="600" rx="10" ry="10" fill="#1a1a1a" />
+    <!-- Screen Display - Thin bezels is a key XPS feature -->
+    <rect x="160" y="60" width="880" height="580" rx="2" ry="2" fill="#181818" />
+    <!-- Screen Content - Dell Logo -->
+    <text x="600" y="350" font-family="Arial, sans-serif" font-size="60" fill="#ffffff" text-anchor="middle">DELL</text>
+  </g>
+  
+  <!-- Hinge -->
+  <rect x="550" y="645" width="100" height="10" rx="5" ry="5" fill="#333333" />
+  
+  <!-- Dell Logo on Lid -->
+  <circle cx="600" cy="650" r="15" fill="#ffffff" />
+</svg>
