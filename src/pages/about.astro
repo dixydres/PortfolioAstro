@@ -30,7 +30,7 @@ import Prose from "../components/Prose.astro";
                 <div class="about-image-border"></div>
                 <div class="about-image">
                     <img
-                        src="/PortfolioAstro/Muller_Photo.jpeg"
+                        src={`${import.meta.env.BASE_URL}Muller_Photo.jpeg`}
                         alt="Jean-José Muller"
                     />
                 </div>
@@ -253,7 +253,7 @@ import Prose from "../components/Prose.astro";
                 </p>
                 <div class="cv-download">
                     <a
-                        href="/PortfolioAstro/CV Muller Jean-José.pdf"
+                        href={`${import.meta.env.BASE_URL}CV Muller Jean-José.pdf`}
                         class="download-button"
                     >
                         <svg

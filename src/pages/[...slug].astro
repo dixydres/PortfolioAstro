@@ -30,7 +30,9 @@ const { post, type } = Astro.props;
 const { Content } = await post.render();
 
 const returnPath =
-    type === "work" ? "/PortfolioAstro/works" : "/PortfolioAstro/blog";
+    type === "work"
+        ? `${import.meta.env.BASE_URL}works`
+        : `${import.meta.env.BASE_URL}blog`;
 const returnText = type === "work" ? "Retour aux projets" : "Retour au blog";
 ---
 

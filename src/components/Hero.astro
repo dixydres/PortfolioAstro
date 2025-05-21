@@ -72,12 +72,11 @@
                 </a>
             </div>
         </article>
-    </div>
-    <div class="hero-image" data-aos="fade-up" data-aos-delay="200">
-        <div class="image-wrapper">            <img                class="hero__img"                src="/Muller_Photo.jpeg"
+    </div>    <div class="hero-image" data-aos="fade-up" data-aos-delay="200">
+        <div class="image-wrapper">            <img                class="hero__img"                src={`${import.meta.env.BASE_URL}Muller_Photo.jpeg`}
                 alt="Portrait de Muller Jean-José"                loading="eager"
                 style="cursor: pointer;"
-                onclick="openOverlay('/Muller_Photo.jpeg')"
+                onclick={`openOverlay('${import.meta.env.BASE_URL}Muller_Photo.jpeg')`}
             />
             <div class="hero-blob"></div>
             <div class="image-shine"></div>

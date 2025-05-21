@@ -28,7 +28,8 @@ const processedHeroImage = heroImage;
 ---
 
 <Basic title={title} description={description}>
-    <a href="/works/" class="back-to-top">
+    <a href={`${import.meta.env.BASE_URL}works/`} class="back-to-top"
+        >orks/`} class="back-to-top">
         <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -154,7 +155,8 @@ const processedHeroImage = heroImage;
             <slot />
         </Prose>
         <div class="post-navigation">
-            <a href="/PortfolioAstro/works/" class="back-button">
+            <a href={`${import.meta.env.BASE_URL}works/`} class="back-button"
+                >back-button">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="20"

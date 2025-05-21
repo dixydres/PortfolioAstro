@@ -5,7 +5,11 @@
 <header class="nav-bar">
     <div class="nav-container">
         <div class="nav-logo">
-            <a href="/" class="nav-name" style="text-decoration:none;">
+            <a
+                href={import.meta.env.BASE_URL}
+                class="nav-name"
+                style="text-decoration:none;"
+            >
                 Muller Jean-José
             </a>
         </div>
@@ -16,11 +20,18 @@
         </button>
         <nav class="nav-menu">
             <ul class="nav-link">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/about">À propos</a></li>
-                <li><a href="/works">Projets</a></li>
+                <li><a href={import.meta.env.BASE_URL}>Accueil</a></li>
                 <li>
-                    <a href="/#contact" class="contact-btn">Contact</a>
+                    <a href={`${import.meta.env.BASE_URL}about`}>À propos</a>
+                </li>
+                <li>
+                    <a href={`${import.meta.env.BASE_URL}works`}>Projets</a>
+                </li>
+                <li>
+                    <a
+                        href={`${import.meta.env.BASE_URL}#contact`}
+                        class="contact-btn">Contact</a
+                    >
                 </li>
             </ul>
         </nav>
