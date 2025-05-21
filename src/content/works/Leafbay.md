@@ -423,7 +423,7 @@ Ce projet m'a permis d'approfondir mes connaissances en modélisation 3D, en UX/
 
 | Catégorie | Technologies |
 |-----------|-------------|
-| **Design** | Figma, Blender, Adobe XD |
+| **Design** | Figma, Blender |
 | **Front-end** | HTML5, CSS3, JavaScript |
 | **Back-end** | WordPress, PHP |
 | **Production** | Adobe After Effects, Premiere Pro |
