@@ -1,0 +1,119 @@
+<script is:inline>
+    document.addEventListener("astro:page-load", () => {
+        const carousel = document.querySelector(".carousel");
+        if (!carousel) return;
+
+        const container = carousel.querySelector(".carousel-container");
+        const slides = carousel.querySelectorAll(".carousel-slide");
+        const dotsContainer = carousel.querySelector(".carousel-dots");
+        const prevBtn = carousel.querySelector(".prev");
+        const nextBtn = carousel.querySelector(".next");
+
+        if (!container || !dotsContainer || !slides.length) return;
+
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        function updateSlide(index) {
+            if (container) {
+                container.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            if (dotsContainer) {
+                dotsContainer.querySelectorAll(".dot").forEach((dot, i) => {
+                    if (i === index) {
+                        dot.classList.add("active");
+                        dot.setAttribute("aria-current", "true");
+                    } else {
+                        dot.classList.remove("active");
+                        dot.removeAttribute("aria-current");
+                    }
+                });
+            }
+        }
+
+        function goToSlide(index) {
+            currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
+            updateSlide(currentIndex);
+        }
+
+        // Créer les points de navigation
+        slides.forEach((_, index) => {
+            const dot = document.createElement("button");
+            dot.classList.add("dot");
+            dot.setAttribute("aria-label", `Image ${index + 1}`);
+            if (index === 0) {
+                dot.classList.add("active");
+                dot.setAttribute("aria-current", "true");
+            }
+            dot.addEventListener("click", () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        // Navigation
+        if (prevBtn)
+            prevBtn.addEventListener("click", () =>
+                goToSlide(currentIndex - 1),
+            );
+        if (nextBtn)
+            nextBtn.addEventListener("click", () =>
+                goToSlide(currentIndex + 1),
+            );
+
+        // Navigation tactile
+        let touchStartX = 0;
+
+        carousel.addEventListener(
+            "touchstart",
+            (e) => {
+                touchStartX = e.touches[0].clientX;
+            },
+            { passive: true },
+        );
+
+        carousel.addEventListener(
+            "touchend",
+            (e) => {
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > 50) {
+                    goToSlide(diff > 0 ? currentIndex + 1 : currentIndex - 1);
+                }
+            },
+            { passive: true },
+        );
+
+        // Navigation au clavier
+        const handleKeydown = (e) => {
+            if (e.key === "ArrowLeft") goToSlide(currentIndex - 1);
+            else if (e.key === "ArrowRight") goToSlide(currentIndex + 1);
+        };
+
+        document.addEventListener("keydown", handleKeydown);
+
+        // Autoplay
+        let isPaused = false;
+        const autoplayDelay = 5000;
+
+        const autoplayInterval = setInterval(() => {
+            if (!isPaused) goToSlide(currentIndex + 1);
+        }, autoplayDelay);
+
+        // Pause sur hover et focus
+        const setPause = (pause) => {
+            isPaused = pause;
+        };
+
+        carousel.addEventListener("mouseenter", () => setPause(true));
+        carousel.addEventListener("mouseleave", () => setPause(false));
+        carousel.addEventListener("focusin", () => setPause(true));
+        carousel.addEventListener("focusout", () => setPause(false));
+
+        // Nettoyage
+        return () => {
+            clearInterval(autoplayInterval);
+            document.removeEventListener("keydown", handleKeydown);
+        };
+    });
+</script>

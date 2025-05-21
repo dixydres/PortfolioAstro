@@ -9,6 +9,9 @@ export default defineConfig({
   build: {
     assets: '_assets'
   },
+  outDir: './dist',
+  // Add .nojekyll file to tell GitHub Pages not to use Jekyll
+  publicDir: './public',
   vite: {
     base: '/',
     build: {
