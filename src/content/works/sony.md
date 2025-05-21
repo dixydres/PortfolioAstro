@@ -37,7 +37,7 @@ Sony Electronics est une boutique e-commerce complète que j'ai développée en 
 
 Pour ce projet académique, nous avons développé une plateforme e-commerce dédiée aux produits Sony, avec un accent particulier sur les fonctionnalités de click & collect. L'objectif était de créer une expérience utilisateur fluide tout en respectant les standards d'une grande marque internationale.
 
-![Site Sony Electronics](/sony.svg)
+![Site Sony Electronics](/PortfolioAstro/sony.svg)
 
 Notre mission comprenait la mise en place d'un catalogue produit complet, d'un système de paiement sécurisé et d'une interface de gestion des commandes pour les retraits en magasin.
 

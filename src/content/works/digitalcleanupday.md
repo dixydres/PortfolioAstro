@@ -37,7 +37,7 @@ Digital Cleanup Day est un événement international visant à sensibiliser le p
 
 Le *Digital Cleanup Day* est une journée dédiée à la sensibilisation sur l'impact environnemental du numérique. J'ai eu pour mission de concevoir un site web éco-responsable présentant le concept de l'événement et incitant les utilisateurs à y participer, tout en créant divers supports de communication.
 
-![Aperçu du projet Digital Cleanup Day](/Digitalcleanupday.svg)
+![Aperçu du projet Digital Cleanup Day](/PortfolioAstro/Digitalcleanupday.svg)
 
 L'objectif principal était de développer une plateforme informative et engageante qui respecte elle-même les principes d'éco-conception web, démontrant ainsi en pratique les valeurs promues par l'événement.
 

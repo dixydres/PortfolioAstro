@@ -28,7 +28,7 @@ J’ai conçu l’identité visuelle de la marque et l’ensemble des packagings
 ### 🚀 Spacechoco – Science-fiction
 
 <div class="image-container">
-  <img src="/spacechoco.png" alt="Packaging Spacechoco" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/spacechoco.png')" />
+  <img src="/PortfolioAstro/spacechoco.png" alt="Packaging Spacechoco" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/PortfolioAstro/spacechoco.png')" />
 </div>
 
 Avec Spacechoco, j’ai créé une tablette de chocolat plongée dans un univers galactique :
@@ -44,7 +44,7 @@ Le verso a été épuré pour rendre les informations nutritionnelles facilement
 ### 💘 Chocolove – Romance
 
 <div class="image-container">
-  <img src="/chocolove.png" alt="Packaging Chocolove" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/chocolove.png')" />
+  <img src="/PortfolioAstro/chocolove.png" alt="Packaging Chocolove" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/PortfolioAstro/chocolove.png')" />
 </div>
 
 **Chocolove** est la version romantique du produit, pensée pour évoquer la douceur et la tendresse :
@@ -60,7 +60,7 @@ Ce packaging vise à transmettre une émotion douce, à la croisée entre gourma
 ### 🤠 Westcola – Western
 
 <div class="image-container">
-  <img src="/westcola.png" alt="Packaging Westcola" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/westcola.png')" />
+  <img src="/PortfolioAstro/westcola.png" alt="Packaging Westcola" style="width: 60%; max-width: 400px; margin: 2rem auto; display: block; cursor: pointer;" onclick="openOverlay('/PortfolioAstro/westcola.png')" />
 </div>
 
 Avec **Westcola**, j’ai exploré un tout autre registre graphique :

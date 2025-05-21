@@ -37,7 +37,7 @@ Olive Oil est une landing page immersive que j'ai conçue pour une marque fictiv
 
 Olive Oil représente l'excellence italienne dans le domaine de l'huile d'olive. Pour cette marque fictive, j'ai développé une landing page qui capture l'essence méditerranéenne et l'artisanat traditionnel derrière chaque bouteille.
 
-![Landing page Olive Oil](/oliveoil.svg)
+![Landing page Olive Oil](/PortfolioAstro/oliveoil.svg)
 
 L'objectif était de créer une présence en ligne qui reflète les valeurs de la marque : authenticité, qualité supérieure et respect des traditions italiennes.
 

@@ -37,7 +37,7 @@ Little Horses est un projet complet de branding pour un bar à thème de jeux de
 
 Pour ce bar à thème unique en son genre, j'ai créé une identité visuelle complète qui capture l'essence des jeux de société traditionnels tout en s'intégrant parfaitement dans le paysage design de Copenhague. Le défi était de développer une marque à la fois nostalgique et contemporaine.
 
-![Identité visuelle Little Horses](/littlehorses.svg)
+![Identité visuelle Little Horses](/PortfolioAstro/littlehorses.svg)
 
 Little Horses propose un espace où les visiteurs peuvent découvrir des centaines de jeux de société tout en profitant d'une sélection de boissons et d'en-cas dans une ambiance chaleureuse et conviviale.
 
