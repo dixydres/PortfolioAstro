@@ -51,9 +51,8 @@ const sortedPosts = count ? filteredPosts.slice(0, count) : filteredPosts;
                                 ))}
                             </div>
                         )}{" "}
-                    </div>{" "}
-                    <a
-                        href={`${import.meta.env.BASE_URL}${post.collection}/${post.slug}/`}
+                    </div>{" "}                    <a
+                        href={`${import.meta.env.BASE_URL}/${post.collection}/${post.slug}/`}
                         class="project-link"
                     >
                         Voir le projet
