@@ -1944,7 +1944,7 @@ class ImmutableDataStore {
    */
   static async fromModule() {
     try {
-      const data = await import('./_astro_data-layer-content.D_IFjM6i.js');
+      const data = await import('./_astro_data-layer-content.BiEab16I.js');
       if (data.default instanceof Map) {
         return ImmutableDataStore.fromMap(data.default);
       }
@@ -3925,4 +3925,4 @@ const sharp$1 = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
   default: sharp_default
 }, Symbol.toStringTag, { value: 'Module' }));
 
-export { createComponent as a, renderTemplate as b, createAstro as c, addAttribute as d, renderScript as e, renderSlot as f, createCollectionToGlobResultMap as g, createGetCollection as h, renderHead as i, deserializeManifest as j, maybeRenderHead as m, renderComponent as r };
+export { renderTemplate as a, addAttribute as b, createComponent as c, createAstro as d, renderScript as e, renderSlot as f, createCollectionToGlobResultMap as g, createGetCollection as h, renderHead as i, deserializeManifest as j, maybeRenderHead as m, renderComponent as r };
