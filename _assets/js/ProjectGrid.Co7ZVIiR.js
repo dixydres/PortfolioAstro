@@ -1,7 +1,7 @@
-import { c as createAstro, a as createComponent, m as maybeRenderHead, f as renderSlot, e as renderScript, b as renderTemplate, d as addAttribute, r as renderComponent } from './vendor.BbfMcRWv.js';
+import { c as createAstro, a as createComponent, m as maybeRenderHead, f as renderSlot, e as renderScript, b as renderTemplate, d as addAttribute, r as renderComponent } from './vendor.Cfm6PQhF.js';
 import 'kleur/colors';
 import 'clsx';
-import { g as getCollection, $ as $$FormattedDate } from './FormattedDate.BuFR4j1l.js';
+import { g as getCollection, $ as $$FormattedDate } from './FormattedDate.DvJ_CAxi.js';
 /* empty css                        */
 
 const $$Astro$1 = createAstro("https://dixydres.github.io");

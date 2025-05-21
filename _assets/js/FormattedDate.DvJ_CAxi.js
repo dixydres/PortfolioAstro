@@ -1,4 +1,4 @@
-import { g as createCollectionToGlobResultMap, h as createGetCollection, c as createAstro, a as createComponent, m as maybeRenderHead, d as addAttribute, b as renderTemplate } from './vendor.BbfMcRWv.js';
+import { g as createCollectionToGlobResultMap, h as createGetCollection, c as createAstro, a as createComponent, m as maybeRenderHead, d as addAttribute, b as renderTemplate } from './vendor.Cfm6PQhF.js';
 import 'kleur/colors';
 import 'clsx';
 

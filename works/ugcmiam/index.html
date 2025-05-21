@@ -156,7 +156,8 @@ Retour aux projets
                     }
                 });
             }
-        }        function goToSlide(index) {
+        }
+        function goToSlide(index) {
             currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
             updateSlide(currentIndex);
         }
@@ -185,13 +186,15 @@ Retour aux projets
             );
 
         // Navigation tactile
-        let touchStartX = 0;        carousel.addEventListener(
+        let touchStartX = 0;
+        carousel.addEventListener(
             "touchstart",
             (e) => {
                 touchStartX = e.touches[0].clientX;
             },
             { passive: true },
-        );        carousel.addEventListener(
+        );
+        carousel.addEventListener(
             "touchend",
             (e) => {
                 const touchEndX = e.changedTouches[0].clientX;
@@ -202,7 +205,7 @@ Retour aux projets
                 }
             },
             { passive: true },
-        );        // Navigation au clavier
+        ); // Navigation au clavier
         const handleKeydown = (e) => {
             if (e.key === "ArrowLeft") goToSlide(currentIndex - 1);
             else if (e.key === "ArrowRight") goToSlide(currentIndex + 1);
@@ -216,7 +219,7 @@ Retour aux projets
 
         const autoplayInterval = setInterval(() => {
             if (!isPaused) goToSlide(currentIndex + 1);
-        }, autoplayDelay);        // Pause sur hover et focus
+        }, autoplayDelay); // Pause sur hover et focus
         const setPause = (pause) => {
             isPaused = pause;
         };
